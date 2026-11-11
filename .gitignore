@@ -1,4 +1,26 @@
-venv/
+# Data
+data/
 *.txt
 *.csv
 !analysis_dataset.csv
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Secrets (database passwords, API keys)
+.env
+*.env
+secrets.toml
+
+# Editors
+.vscode/
+.idea/
