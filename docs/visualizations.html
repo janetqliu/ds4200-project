@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Visualizations | DS4200</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Vega libraries for rendering Altair charts exported as JSON -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.30.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.21.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.26.0"></script>
+</head>
+<body>
+
+  <header>
+    <h1>Examining Student Learning Traces in the Duolingo App</h1>
+    <p class="subtitle">DS4200 Final Project | Group Members: Janet Liu, Richy Xie, Drew Kuhn, Lauren Xiao</p>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="visualizations.html" class="active">Visualizations</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="viz">
+      <h2>Visualization 1: Title</h2>
+      <div id="vis1" class="chart"></div>
+      <p class="takeaway"><strong>Takeaway:</strong> What this chart shows and what the reader should learn.</p>
+      <p class="interaction"><strong>How to interact:</strong> e.g., hover for tooltips, drag to select.</p>
+    </section>
+
+    <section class="viz">
+      <h2>Visualization 2: Title</h2>
+      <div id="vis2" class="chart"></div>
+      <p class="takeaway"><strong>Takeaway:</strong> What this chart shows and what the reader should learn.</p>
+    </section>
+
+    <section class="viz">
+      <h2>Visualization 3: Title</h2>
+      <div id="vis3" class="chart"></div>
+      <p class="takeaway"><strong>Takeaway:</strong> What this chart shows and what the reader should learn.</p>
+    </section>
+
+    <section class="viz">
+      <h2>Visualization 4: Map / Tableau</h2>
+      <div id="vis4" class="chart placeholder">Map or Tableau embed goes here</div>
+      <p class="takeaway"><strong>Takeaway:</strong> What this chart shows and what the reader should learn.</p>
+    </section>
+
+    <section class="viz">
+      <h2>5. Mean Recall by Day of Week</h2>
+      <p>Click on the legend to select different languages!</p>
+      <div class="chart">
+        <iframe src="charts/chart5.html" title="Mean Recall by Day of Week"></iframe>
+      </div>
+      <p class="takeaway"><strong>Takeaway:</strong> Average lexeme recall dips in the middle of the week.</p>
+    </section>
+
+    <section id="summary">
+      <h2>Summary of Findings</h2>
+      <p>Summarize what you learned from the visualizations (2–3 conclusions tied to the project topic).</p>
+      <h3>Future Work</h3>
+      <p>Describe what could be explored next or how the analysis could be extended.</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>DS4200: Information Presentation and Data Visualization | Northeastern University</p>
+  </footer>
+
+  <script>
+    // Each Altair chart: in Python run chart.save('charts/chart1.json'), then embed it here.
+    const charts = {
+      "#vis1": "charts/chart1.json",
+      "#vis2": "charts/chart1.json",   // replace with charts/chart2.json
+      "#vis3": "charts/chart1.json"    // replace with charts/chart3.json
+    };
+    for (const [id, spec] of Object.entries(charts)) {
+      vegaEmbed(id, spec, { actions: false }).catch(err => {
+        document.querySelector(id).textContent =
+          "Chart failed to load: " + err.message +
+          ". Open the site through a local server (python -m http.server) or GitHub Pages.";
+      });
+    }
+  </script>
+
+</body>
+</html>
