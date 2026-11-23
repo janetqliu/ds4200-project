@@ -44,3 +44,4 @@ typing_extensions==4.16.0
 tzdata==2026.5
 vl-convert-python==1.9.0.post1
 wcwidth==0.9.4
+wordcloud==1.9.6
