@@ -9,6 +9,36 @@
   <script src="https://cdn.jsdelivr.net/npm/vega@5.30.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.21.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.26.0"></script>
+  <style>
+    /* Word cloud section: centered picture with pill-style language buttons underneath */
+    .wordcloud-chart { text-align: center; }
+    .wordcloud-chart img { display: block; margin: 0 auto; max-width: 100%; height: auto; }
+    .wordcloud-picker {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 0.5rem 0 1.25rem;
+    }
+    .wordcloud-picker label { cursor: pointer; }
+    .wordcloud-picker input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .wordcloud-picker span {
+      display: inline-block;
+      padding: 0.45rem 1.1rem;
+      border: 1px solid #1a5fb4;
+      border-radius: 999px;
+      color: #1a5fb4;
+      background: #fff;
+      transition: background 0.15s, color 0.15s;
+    }
+    .wordcloud-picker label:hover span { background: #e8f0fb; }
+    .wordcloud-picker input:checked + span { background: #1a5fb4; color: #fff; }
+    .wordcloud-picker input:focus-visible + span { outline: 3px solid #99c1f1; outline-offset: 2px; }
+  </style>
 </head>
 <body>
 
@@ -57,6 +87,21 @@
       <p class="takeaway"><strong>Takeaway:</strong> Average lexeme recall dips in the middle of the week.</p>
     </section>
 
+    <section class="viz">
+      <h2>Most Practiced Words by Language</h2>
+      <p>Pick a language to see which words learners practiced the most. Bigger words were practiced more often.</p>
+      <div class="chart wordcloud-chart">
+        <img id="wordcloud-img" src="images/wordcloud_en.png" alt="Word cloud of the most practiced English words">
+      </div>
+      <div id="wordcloud-picker" class="wordcloud-picker">
+        <label><input type="radio" name="wordcloud-lang" value="en" checked><span>English</span></label>
+        <label><input type="radio" name="wordcloud-lang" value="es"><span>Spanish</span></label>
+        <label><input type="radio" name="wordcloud-lang" value="fr"><span>French</span></label>
+        <label><input type="radio" name="wordcloud-lang" value="de"><span>German</span></label>
+      </div>
+      <p class="takeaway"><strong>Takeaway:</strong> This visualization shows the most frequently practiced words in each language, with the size of each word indicating its frequency. Filler words like "the" and "a" are removed so that we can focus on the most important terms. Three themes emerged from these visualizations. The first theme is that across most languages there are certain words that are frequently practiced. This includes verbs that cover eating and drinking, which are the largest in most of the word clouds. Common nouns, or more specifically person nouns (like "man", "girl", "boy"), are also prominently featured. The final theme we see in these clouds is the prominence of food nouns. Even if you only read English, the same pattern appears across languages. Eat, come, and mange or man, hombre, and homme have similar relative sizes across clouds and mean the same thing in their respective languages. This likely reflects Duolingo's consistent focus on high-frequency vocabulary.</p>
+    </section>
+
     <section id="summary">
       <h2>Summary of Findings</h2>
       <p>Summarize what you learned from the visualizations (2–3 conclusions tied to the project topic).</p>
@@ -69,6 +114,18 @@
   <footer>
     <p>DS4200: Information Presentation and Data Visualization | Northeastern University</p>
   </footer>
+
+  <script>
+    // Word cloud language picker: swap the image when a radio button is chosen.
+    const cloudNames = { en: "English", es: "Spanish", fr: "French", de: "German" };
+    document.querySelectorAll('input[name="wordcloud-lang"]').forEach(function (radio) {
+      radio.addEventListener("change", function () {
+        const img = document.getElementById("wordcloud-img");
+        img.src = "images/wordcloud_" + radio.value + ".png";
+        img.alt = "Word cloud of the most practiced " + cloudNames[radio.value] + " words";
+      });
+    });
+  </script>
 
   <script>
     // Each Altair chart: in Python run chart.save('charts/chart1.json'), then embed it here.
