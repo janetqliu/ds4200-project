@@ -73,22 +73,46 @@
     </section>
 
     <section class="viz">
-      <h2>Visualization 4: Map / Tableau</h2>
-      <div id="vis4" class="chart placeholder">Map or Tableau embed goes here</div>
+      <h2>Visualization 4</h2>
+      <div class="chart">
+        <iframe src="charts/chartx.html" title="4"></iframe>
       <p class="takeaway"><strong>Takeaway:</strong> What this chart shows and what the reader should learn.</p>
     </section>
 
     <section class="viz">
       <h2>5. Mean Recall by Day of Week</h2>
-      <p>Click on the legend to select different languages!</p>
+      <p>Click on the legend to select different languages.</p>
       <div class="chart">
         <iframe src="charts/chart5.html" title="Mean Recall by Day of Week"></iframe>
       </div>
-      <p class="takeaway"><strong>Takeaway:</strong> Average lexeme recall dips in the middle of the week.</p>
+      <p class="takeaway"><strong>Takeaway:</strong> Across all languages, recall stays within a narrow band of roughly 
+        87% to 90%. However, the overall line dips in the middle of the week, falling from about 89.9% on Tuesday to 
+        a low of 87.0% on Wednesday and 87.6% on Thursday, then recovering to a peak of 90.0% on Saturday. 
+        Fewer reviews also happen mid-week, with Wednesday logging about half as many observations as Sunday (432 vs. 868). 
+        This suggests learners practice less and recall slightly less in the middle of the week, likely due to being busier. 
+        The individual language lines are much noisier than the overall average, especially for languages with 
+        few observations. For example, Portuguese's 71% on Tuesday comes from only 14 observations, so individual language patterns
+         should be read with caution.</p>
     </section>
 
     <section class="viz">
-      <h2>Most Practiced Words by Language</h2>
+      <h2>6. Learning Flow Between Languages</h2>
+      <p>Hover over links to view more information.</p>
+      <div class="chart">
+        <iframe src="charts/chart6.html" title="Learning Flow Between Languages"></iframe>
+      </div>
+      <p class="takeaway"><strong>Takeaway:</strong> We assume that UI language maps to the user's native language.
+        Every learning path in our dataset runs through English. 
+        English-interface users study Spanish, French, German, Italian, and Portuguese, while users with a 
+        Spanish, Portuguese, or Italian interface are all learning English. 
+        The two biggest flows are near mirror images of each other: Spanish speakers learning English (1,226 users) 
+        and English speakers learning Spanish (1,220 users). Mean recall is high and fairly similar across all pairs, 
+        between 88% and 90% for most of them. The one exception is Italian speakers learning English, 
+        who recall about 95% of words, but this is also one of the smallest groups (143 users).</p>
+    </section>
+
+    <section class="viz">
+      <h2>7. Most Practiced Words by Language</h2>
       <p>Pick a language to see which words learners practiced the most. Bigger words were practiced more often.</p>
       <div class="chart wordcloud-chart">
         <img id="wordcloud-img" src="images/wordcloud_en.png" alt="Word cloud of the most practiced English words">
@@ -128,19 +152,20 @@
   </script>
 
   <script>
-    // Each Altair chart: in Python run chart.save('charts/chart1.json'), then embed it here.
-    const charts = {
-      "#vis1": "charts/chart1.json",
-      "#vis2": "charts/chart1.json",   // replace with charts/chart2.json
-      "#vis3": "charts/chart1.json"    // replace with charts/chart3.json
-    };
-    for (const [id, spec] of Object.entries(charts)) {
-      vegaEmbed(id, spec, { actions: false }).catch(err => {
-        document.querySelector(id).textContent =
-          "Chart failed to load: " + err.message +
-          ". Open the site through a local server (python -m http.server) or GitHub Pages.";
+    // Resize each chart iframe to fit the chart inside it
+    document.querySelectorAll('.chart iframe').forEach(function (frame) {
+      frame.addEventListener('load', function () {
+        try {
+          const doc = frame.contentDocument;
+          doc.body.style.margin = '0';                 // drop Plotly's default page margin
+          doc.documentElement.style.overflow = 'hidden'; // no scrollbar inside the frame
+          frame.style.height = '0px';
+          frame.style.height = (doc.documentElement.scrollHeight + 4) + 'px'; // small buffer for rounding
+        } catch (err) {
+          // Can't read the iframe (e.g., opened via file://), so keep the CSS height
+        }
       });
-    }
+    });
   </script>
 
 </body>
