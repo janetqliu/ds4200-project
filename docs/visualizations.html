@@ -54,16 +54,38 @@
   <main>
 
     <section class="viz">
-      <h2>Visualization 1: Title</h2>
-      <div id="vis1" class="chart"></div>
-      <p class="takeaway"><strong>Takeaway:</strong> What this chart shows and what the reader should learn.</p>
-      <p class="interaction"><strong>How to interact:</strong> e.g., hover for tooltips, drag to select.</p>
+      <h2>1. Mean Historical Accuracy by Language Learned</h2>
+      <p>Hover over a bar to see the mean accuracy and the sample size for each language.</p>
+      <div class="chart">
+        <iframe src="charts/chart1.html" title="Mean Historical Accuracy by Language Learned"></iframe>
+      </div>
+      <p class="takeaway"><strong>Takeaway:</strong> Historical accuracy is even across the six languages,
+        spanning only about two percentage points from English at the top (90.7%) to French at the bottom (88.4%).
+        The y-axis has been zoomed to 85&ndash;95% to make that spread visible (since on a full 0&ndash;100% scale
+        the bars would look identical). Learners of French are the least accurate on words they have already seen,
+        which is consistent with French spelling and pronunciation being harder to pin down than other
+        languages such as Spanish or Italian.</p>
     </section>
 
     <section class="viz">
-      <h2>Visualization 2: Title</h2>
-      <div id="vis2" class="chart"></div>
-      <p class="takeaway"><strong>Takeaway:</strong> What this chart shows and what the reader should learn.</p>
+      <h2>2. Average Recall by Number of Past Exposures</h2>
+      <p>Use the dropdown to focus on a single language, or leave it on &ldquo;All&rdquo;
+        for the overall pattern. Hover any point for the average and the sample size for each bin.</p>
+      <div class="chart">
+        <iframe src="charts/chart2.html" title="Average Recall by Number of Past Exposures"></iframe>
+      </div>
+      <p class="takeaway"><strong>Takeaway:</strong> As a learner sees more words, recall
+        climbs from 89.0% for words seen 1&ndash;9 times to a peak of 90.2% at 20&ndash;29 past exposures, then drops
+        to 86.9% for words seen 50 or more times. However, the bin sample sizes are very uneven. Of the 5,000 records,
+        64% (3,178) fall in the bin 1&ndash;9, and the number of records shrinks as exposures increase, down to only 88
+        in the bin 40&ndash;49 (the 50+ bin has 358 only because it groups together every word seen 50 times or more).
+        Because the entire pattern spans about three percentage points, the averages for the
+        smaller bins could be manipulated significantly from a few records, therefore the rise and drop should be read as a
+        tentative trend rather than a significant result. This is even more true for individual languages,
+        where some bins hold fewer than 10 records. If the drop is real, one possible explanation is selection of words rather
+        than just forgetting: words a learner keeps being shown dozens of times may be the ones Duolingo's
+        algorithm has flagged as difficult, so heavy exposure would be a sign of struggle rather
+        than a cause of worse recall.</p>
     </section>
 
     <section class="viz">

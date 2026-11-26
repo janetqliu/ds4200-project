@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@6"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@6.4.1"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@7"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-50772daeb7c4073688d073f901333287"}, "mark": {"type": "bar", "clip": true}, "encoding": {"tooltip": [{"field": "learning_language", "title": "Language", "type": "nominal"}, {"field": "mean_accuracy", "format": ".2%", "title": "Mean historical accuracy", "type": "quantitative"}, {"field": "records", "format": ",", "title": "Records", "type": "quantitative"}], "x": {"field": "learning_language", "sort": "-y", "title": "Learning Language", "type": "nominal"}, "y": {"axis": {"format": ".0%"}, "field": "mean_accuracy", "scale": {"domain": [0.85, 0.95], "zero": false}, "title": "Mean Historical Accuracy", "type": "quantitative"}}, "height": 300, "title": "Mean Historical Accuracy VS Language being Learned", "width": "container", "$schema": "https://vega.github.io/schema/vega-lite/v6.4.1.json", "datasets": {"data-50772daeb7c4073688d073f901333287": [{"learning_language": "English", "mean_accuracy": 0.9067993868926113, "records": 1946}, {"learning_language": "French", "mean_accuracy": 0.8844241901140717, "records": 707}, {"learning_language": "German", "mean_accuracy": 0.8939039274623344, "records": 561}, {"learning_language": "Italian", "mean_accuracy": 0.905221060768981, "records": 322}, {"learning_language": "Portuguese", "mean_accuracy": 0.8928575498926106, "records": 118}, {"learning_language": "Spanish", "mean_accuracy": 0.9020804992959175, "records": 1346}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>

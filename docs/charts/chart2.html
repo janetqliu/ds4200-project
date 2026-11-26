@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@6"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@6.4.1"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@7"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "layer": [{"mark": {"type": "area", "opacity": 0.3}, "encoding": {"tooltip": [{"field": "history_group", "title": "History seen", "type": "ordinal"}, {"field": "mean_recall", "format": ".2%", "title": "Avg recall", "type": "quantitative"}, {"field": "records", "format": ",", "title": "Records", "type": "quantitative"}], "x": {"axis": {"labelAngle": 0}, "field": "history_group", "sort": ["1\u20139", "10\u201319", "20\u201329", "30\u201339", "40-49", "50+"], "title": "History Seen", "type": "ordinal"}, "y": {"axis": {"format": ".1%"}, "field": "mean_recall", "scale": {"nice": true, "padding": 20, "zero": false}, "stack": false, "title": "Average Recall", "type": "quantitative"}}, "name": "view_309502c7e80a923d_0", "transform": [{"filter": {"param": "param_62f9a5581a5eeaa0"}}, {"aggregate": [{"op": "sum", "field": "recall_sum", "as": "recall_sum"}, {"op": "sum", "field": "records", "as": "records"}], "groupby": ["history_group"]}, {"calculate": "datum.recall_sum / datum.records", "as": "mean_recall"}]}, {"mark": {"type": "line", "strokeWidth": 2.5}, "encoding": {"tooltip": [{"field": "history_group", "title": "History seen", "type": "ordinal"}, {"field": "mean_recall", "format": ".2%", "title": "Avg recall", "type": "quantitative"}, {"field": "records", "format": ",", "title": "Records", "type": "quantitative"}], "x": {"axis": {"labelAngle": 0}, "field": "history_group", "sort": ["1\u20139", "10\u201319", "20\u201329", "30\u201339", "40-49", "50+"], "title": "History Seen", "type": "ordinal"}, "y": {"axis": {"format": ".1%"}, "field": "mean_recall", "scale": {"nice": true, "padding": 20, "zero": false}, "stack": false, "title": "Average Recall", "type": "quantitative"}}, "transform": [{"filter": {"param": "param_62f9a5581a5eeaa0"}}, {"aggregate": [{"op": "sum", "field": "recall_sum", "as": "recall_sum"}, {"op": "sum", "field": "records", "as": "records"}], "groupby": ["history_group"]}, {"calculate": "datum.recall_sum / datum.records", "as": "mean_recall"}]}, {"mark": {"type": "circle", "size": 70}, "encoding": {"tooltip": [{"field": "history_group", "title": "History seen", "type": "ordinal"}, {"field": "mean_recall", "format": ".2%", "title": "Avg recall", "type": "quantitative"}, {"field": "records", "format": ",", "title": "Records", "type": "quantitative"}], "x": {"axis": {"labelAngle": 0}, "field": "history_group", "sort": ["1\u20139", "10\u201319", "20\u201329", "30\u201339", "40-49", "50+"], "title": "History Seen", "type": "ordinal"}, "y": {"axis": {"format": ".1%"}, "field": "mean_recall", "scale": {"nice": true, "padding": 20, "zero": false}, "stack": false, "title": "Average Recall", "type": "quantitative"}}, "transform": [{"filter": {"param": "param_62f9a5581a5eeaa0"}}, {"aggregate": [{"op": "sum", "field": "recall_sum", "as": "recall_sum"}, {"op": "sum", "field": "records", "as": "records"}], "groupby": ["history_group"]}, {"calculate": "datum.recall_sum / datum.records", "as": "mean_recall"}]}], "data": {"name": "data-6d1834b4bd7dbf2045a0eaa6db0cae40"}, "height": 300, "params": [{"name": "param_62f9a5581a5eeaa0", "select": {"type": "point", "fields": ["language"]}, "bind": {"input": "select", "options": [null, "English", "French", "German", "Italian", "Portuguese", "Spanish"], "labels": ["All", "English", "French", "German", "Italian", "Portuguese", "Spanish"], "name": "Learning Language: "}, "views": ["view_309502c7e80a923d_0"]}], "title": "Average Recall by History Seen", "width": "container", "$schema": "https://vega.github.io/schema/vega-lite/v6.4.1.json", "datasets": {"data-6d1834b4bd7dbf2045a0eaa6db0cae40": [{"language": "English", "history_group": "1\u20139", "recall_sum": 991.590476190482, "records": 1103}, {"language": "English", "history_group": "10\u201319", "recall_sum": 292.775000000002, "records": 327}, {"language": "English", "history_group": "20\u201329", "recall_sum": 146.958333333333, "records": 163}, {"language": "English", "history_group": "30\u201339", "recall_sum": 72.316666666667, "records": 83}, {"language": "English", "history_group": "40-49", "recall_sum": 42.5, "records": 46}, {"language": "English", "history_group": "50+", "recall_sum": 191.158333333335, "records": 224}, {"language": "French", "history_group": "1\u20139", "recall_sum": 390.455555555558, "records": 441}, {"language": "French", "history_group": "10\u201319", "recall_sum": 111.032142857143, "records": 123}, {"language": "French", "history_group": "20\u201329", "recall_sum": 38.583333333334, "records": 44}, {"language": "French", "history_group": "30\u201339", "recall_sum": 27.966666666667, "records": 32}, {"language": "French", "history_group": "40-49", "recall_sum": 9.5, "records": 13}, {"language": "French", "history_group": "50+", "recall_sum": 47.966666666667, "records": 54}, {"language": "German", "history_group": "1\u20139", "recall_sum": 351.133333333337, "records": 395}, {"language": "German", "history_group": "10\u201319", "recall_sum": 80.323809523809, "records": 89}, {"language": "German", "history_group": "20\u201329", "recall_sum": 27.8, "records": 31}, {"language": "German", "history_group": "30\u201339", "recall_sum": 22.666666666667, "records": 24}, {"language": "German", "history_group": "40-49", "recall_sum": 6.5, "records": 9}, {"language": "German", "history_group": "50+", "recall_sum": 10.0, "records": 13}, {"language": "Italian", "history_group": "1\u20139", "recall_sum": 206.066666666669, "records": 235}, {"language": "Italian", "history_group": "10\u201319", "recall_sum": 44.333333333333, "records": 48}, {"language": "Italian", "history_group": "20\u201329", "recall_sum": 16.888888888889, "records": 19}, {"language": "Italian", "history_group": "30\u201339", "recall_sum": 9.0, "records": 9}, {"language": "Italian", "history_group": "40-49", "recall_sum": 1.0, "records": 1}, {"language": "Italian", "history_group": "50+", "recall_sum": 10.0, "records": 10}, {"language": "Portuguese", "history_group": "1\u20139", "recall_sum": 71.833333333334, "records": 81}, {"language": "Portuguese", "history_group": "10\u201319", "recall_sum": 19.733333333333, "records": 23}, {"language": "Portuguese", "history_group": "20\u201329", "recall_sum": 3.5, "records": 5}, {"language": "Portuguese", "history_group": "30\u201339", "recall_sum": 1.0, "records": 1}, {"language": "Portuguese", "history_group": "40-49", "recall_sum": 5.0, "records": 5}, {"language": "Portuguese", "history_group": "50+", "recall_sum": 3.0, "records": 3}, {"language": "Spanish", "history_group": "1\u20139", "recall_sum": 818.471428571437, "records": 923}, {"language": "Spanish", "history_group": "10\u201319", "recall_sum": 204.572222222224, "records": 230}, {"language": "Spanish", "history_group": "20\u201329", "recall_sum": 73.833333333334, "records": 79}, {"language": "Spanish", "history_group": "30\u201339", "recall_sum": 42.166666666667, "records": 46}, {"language": "Spanish", "history_group": "40-49", "recall_sum": 12.166666666667, "records": 14}, {"language": "Spanish", "history_group": "50+", "recall_sum": 48.8, "records": 54}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>
